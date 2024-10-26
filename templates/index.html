@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Display</title>
+    <script>
+        // Function to fetch the temperature from the server
+        async function fetchTemperature() {
+            const response = await fetch('/temperature');
+            const data = await response.json();
+            document.getElementById('tempValue').textContent = data.temperature + ' ' + data.unit;
+        }
+
+        // Fetch temperature every second
+        setInterval(fetchTemperature, 1000);
+    </script>
+</head>
+<body onload="fetchTemperature()">
+    <h1>Live Temperature Reading</h1>
+    <p>Temperature: <span id="tempValue">Loading...</span></p>
+</body>
+</html>
